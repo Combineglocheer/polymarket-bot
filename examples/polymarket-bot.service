@@ -1,0 +1,26 @@
+[Unit]
+Description=Polymarket Trading Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=bot
+Group=bot
+WorkingDirectory=/opt/polymarket-bot
+EnvironmentFile=/opt/polymarket-bot/.env
+ExecStart=/opt/polymarket-bot/.venv/bin/polymarket-bot run --config /opt/polymarket-bot/config.yaml
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/polymarket-bot/logs /opt/polymarket-bot/data
+
+[Install]
+WantedBy=multi-user.target
