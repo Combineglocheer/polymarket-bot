@@ -1,0 +1,87 @@
+# --- Secrets & local config ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+credentials.json
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- Testing & coverage ---
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+.tox/
+htmlcov/
+coverage.xml
+*.cover
+.hypothesis/
+
+# --- Type checking ---
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+
+# --- IDEs ---
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# --- Logs & runtime data ---
+logs/
+*.log
+*.log.*
+data/
+runs/
+checkpoints/
+state.db
+*.sqlite
+*.sqlite3
+
+# --- Docker volumes ---
+prometheus_data/
+grafana_data/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+*.ipynb
+
+# --- Build output ---
+*.pyc
+__pypackages__/
