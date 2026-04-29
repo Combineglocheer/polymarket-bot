@@ -1,0 +1,39 @@
+services:
+  polymarket-bot:
+    build: .
+    image: polymarket-bot:latest
+    container_name: polymarket-bot
+    env_file: .env
+    volumes:
+      - ./config.yaml:/home/bot/config.yaml:ro
+      - ./logs:/home/bot/logs
+    restart: unless-stopped
+    ports:
+      - "9090:9090"  # Prometheus metrics
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: polymarket-prometheus
+    volumes:
+      - ./examples/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - "9091:9090"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: polymarket-grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+
+volumes:
+  prometheus_data:
+  grafana_data:
