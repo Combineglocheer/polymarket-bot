@@ -1,0 +1,27 @@
+# =============================================================================
+# Polymarket Bot — Default configuration
+# =============================================================================
+# Tune the strategy, risk, and execution settings here.
+# Credentials live in `.env`, NOT in this file.
+# =============================================================================
+
+strategy:
+  name: mean_reversion
+  params:
+    lower_bound: 0.05      # buy YES if best ask is below this
+    upper_bound: 0.30      # exit YES if best bid hits this
+    min_volume_usd: 50000  # ignore markets thinner than this
+    max_spread: 0.03       # ignore wider books
+    order_size_usd: 10.0
+
+risk:
+  max_position_size_usd: 25.0
+  max_open_positions: 5
+  daily_loss_limit_usd: 100.0
+  kill_switch_drawdown_pct: 20.0
+  max_slippage_bps: 50
+
+execution:
+  scan_interval_seconds: 30
+  order_type: GTC          # GTC | FOK | GTD
+  dry_run: true            # ⚠️  set to false to place REAL orders
